@@ -82,7 +82,7 @@
     text-align: left;
     line-height: 0.9rem;
     padding: 0;
-    z-index: 999;
+    z-index: 10001;
     pointer-events: auto; /* ← FIX: allow clicks again */
     cursor: pointer;
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -110,10 +110,10 @@
   .scrolling-columns-static {
     position: absolute; /* if you need to position this block, that's fine */
     top: 1572vh;
-    left: 2vw;
+    right: 2vw;
     display: flex;
     flex-direction: row;
-    gap: 10vw;
+    gap: 2vw;
     max-width: 60vw;
     width: 96vw;
     color: white;
@@ -121,7 +121,7 @@
   }
   
   .column-left {
-    width: 30vw;
+    width: 40vw;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 1rem;
     font-weight: 300;
@@ -129,7 +129,7 @@
   }
   
   .column-right {
-    flex: 20vw;
+    flex: 10vw;
     text-align: left;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 1rem;
@@ -194,19 +194,24 @@
   background: white;
   color: black;
 }
-
-#scroll-down-indicator {
+.scroll-indicator {
     position: fixed;
     bottom: 2vh;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    cursor: pointer;
+    gap: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+    pointer-events: none;
   }
+  
+  .scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
   
   .arrow {
     font-size: 1.5rem;
@@ -216,64 +221,151 @@
 
   
 
-  #scroll-down-indicator:hover .arrow {
+ 
+  #scrolling-text-wrapper {
+    position: relative;
+    z-index: 10;
+  }
+
+  #scrolling-text-wrapper.stacked {
+    transition: opacity 0.6s ease;
+    opacity: 1;
+  }
+  #scrolling-text-wrapper:not(.stacked) {
     opacity: 1;
   }
 
-
-  #scroll-up-indicator {
-    position: fixed;
-    bottom: 2vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
+  #scrolling-text-wrapper.stacked {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    cursor: pointer;
-  }
-  
-  #scroll-up-indicator .arrow {
-    font-size: 1.5rem;
-    color: white;
-    animation: bounceUp 1.5s infinite;
-  }
-  
-
-  
-  
-  #scroll-up-indicator:hover .arrow {
-    opacity: 1;
-  }
-  
-  #scroll-up-indicator {
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  
-  .back-to-top {
+    flex-direction: column;
+    align-items: flex-start;
     position: fixed;
-    bottom: 20px;
-    right: 2vw;
+    top: 5vh;
+    left: 2vw;
+    max-width: 50vw;
+    z-index: 20;
+    gap: 1rem; /* ← adds vertical spacing */
+    pointer-events: none;
+  }
+  
+  #scrolling-text-wrapper.stacked .scrolling-text {
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    color: white;
+  }
+
+
+  .stacked-collector {
+    position: fixed;
+    top: 5vh;
+    left: 2vw;
+    max-width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    z-index: 50;
+    pointer-events: none;
+    color: white;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 1rem;
     font-weight: 300;
-    color: white;
-    text-align: right;
-    z-index: 999;
-    cursor: pointer;
-    transition: opacity 0.4s ease;
-    bottom: 3vh;
+    line-height: 1.4;
   }
   
-  .back-to-top span {
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
+  .stacked-line {
+    opacity: 1;
   }
   
-  .back-to-top:hover span {
-    border-color: white;
+  
+
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(1) { top: 100vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(2) { top: 200vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(3) { top: 300vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(4) { top: 400vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(5) { top: 500vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(6) { top: 600vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(7) { top: 148vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(8) { top: 158vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(9) { top: 168vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(10) { top: 315vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(11) { top: 375vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(12) { top: 410vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(13) { top: 420vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(14) { top: 430vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(15) { top: 605vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(16) { top: 615vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(17) { top: 670vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(18) { top: 680vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(19) { top: 690vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(20) { top: 680vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(21) { top: 810vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(22) { top: 820vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(23) { top: 858vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(24) { top: 870vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(25) { top: 879vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(26) { top: 889vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(27) { top: 970vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(28) { top: 980vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(29) { top: 990vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(30) { top: 1039vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(31) { top: 1045vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(32) { top: 1083vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(33) { top: 1089vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(34) { top: 1215vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(35) { top: 1223vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(36) { top: 1310vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(37) { top: 1320vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(38) { top: 1330vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(39) { top: 10vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(40) { top: 20vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(41) { top: 30vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(42) { top: 40vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(43) { top: 50vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(44) { top: 128vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(45) { top: 148vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(46) { top: 158vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(47) { top: 168vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(48) { top: 315vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(49) { top: 375vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(50) { top: 410vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(51) { top: 420vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(52) { top: 430vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(53) { top: 605vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(54) { top: 615vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(55) { top: 670vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(56) { top: 680vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(57) { top: 690vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(58) { top: 680vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(59) { top: 810vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(60) { top: 820vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(61) { top: 858vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(62) { top: 870vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(63) { top: 879vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(64) { top: 889vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(65) { top: 970vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(66) { top: 980vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(67) { top: 990vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(68) { top: 1039vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(69) { top: 1045vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(70) { top: 1083vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(71) { top: 1089vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(72) { top: 1215vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(73) { top: 1223vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(74) { top: 1310vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(75) { top: 1320vh; }
+  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(76) { top: 1330vh; }
+  
+
+  #collected-text {
+    opacity: 0;
+    transition: opacity 0.6s ease;
   }
   
+  #collected-text.visible {
+    opacity: 1;
+  }
