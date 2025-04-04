@@ -4,44 +4,339 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Algún Día Cruzaré el Océano</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css"/>
+
+
+<script>
+let isAudioPlaying = false;
+let hasPlayedAudio = false;
+let currentLanguage = "es"; // default language
+
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("ambient-audio");
+  const toggleButton = document.getElementById("audio-toggle");
+  const heroTitle = document.getElementById("hero-title");
+  const buttons = document.querySelectorAll(".lang-btn");
+  const langElements = document.querySelectorAll(".lang");
+
+  // Audio logic
+  function tryPlayAudio() {
+    if (!hasPlayedAudio) {
+      audio.volume = 0.4;
+      audio.play().then(() => {
+        hasPlayedAudio = true;
+      }).catch((error) => {
+        console.log("Audio play failed:", error);
+      });
+    }
+  }
+
+  window.addEventListener("scroll", tryPlayAudio);
+  window.addEventListener("click", tryPlayAudio);
+  window.addEventListener("keydown", tryPlayAudio);
+
+  toggleButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (!isAudioPlaying) {
+      audio.volume = 0.4;
+      audio.play().then(() => {
+        toggleButton.textContent = (currentLanguage === "en") ? "Keep the Silence" : "Guardar Silencio";
+        isAudioPlaying = true;
+        hasPlayedAudio = true;
+      }).catch(err => {
+        console.log("Audio blocked:", err);
+      });
+    } else {
+      audio.pause();
+      toggleButton.textContent = (currentLanguage === "en") ? "Listen to the Memory" : "Escuchar la Memoria";
+      isAudioPlaying = false;
+    }
+  });
+
+  // Scroll to top on hero title click
+  heroTitle.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+  // Language toggle logic
+  function setLanguage(lang) {
+    currentLanguage = lang;
+
+    buttons.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lang === lang);
+    });
+
+    langElements.forEach(el => {
+      el.style.display = el.classList.contains(`lang-${lang}`) ? "block" : "none";
+    });
+
+    // Update hero title
+    heroTitle.textContent = (lang === "en")
+      ? "Someday I’ll Cross the Ocean"
+      : "Algún Día Cruzaré el Océano";
+
+    // Update audio button
+    if (!isAudioPlaying) {
+      toggleButton.textContent = (lang === "en")
+        ? "Listen to the Memory"
+        : "Escuchar la Memoria";
+    } else {
+      toggleButton.textContent = (lang === "en")
+        ? "Keep the Silence"
+        : "Guardar Silencio";
+    }
+  }
+
+  // Scroll text observer
+  const texts = document.querySelectorAll(".scrolling-text");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      entry.target.style.opacity = entry.isIntersecting ? 1 : 0;
+    });
+  }, { threshold: 0.6 });
+
+  texts.forEach(text => {
+    observer.observe(text);
+  });
+
+  // Fade-in observer
+  const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  fadeElements.forEach(el => {
+    fadeObserver.observe(el);
+  });
+
+  // Init with Spanish as default
+  setLanguage("es");
+
+  // Attach language toggle buttons
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      setLanguage(btn.dataset.lang);
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollUpIndicator = document.getElementById("scroll-up-indicator");
+  const scrollDownIndicator = document.getElementById("scroll-down-indicator");
+  const firstImageSection = document.querySelector(".image-section");
+
+  // Scroll down arrow click: go to first section
+  if (scrollDownIndicator && firstImageSection) {
+    scrollDownIndicator.addEventListener("click", () => {
+      firstImageSection.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  // Scroll up arrow click: scroll to top
+  if (scrollUpIndicator) {
+    scrollUpIndicator.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // Show/hide arrows based on scroll position
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.body.scrollHeight;
+
+    // 🔽 Show scroll-down arrow only near top
+    if (scrollDownIndicator) {
+      if (scrollTop < 100) {
+        scrollDownIndicator.style.opacity = 1;
+        scrollDownIndicator.style.pointerEvents = "auto";
+      } else {
+        scrollDownIndicator.style.opacity = 0;
+        scrollDownIndicator.style.pointerEvents = "none";
+      }
     }
 
-    body, html {
-      height: 100%;
-      scroll-behavior: smooth;
+    // 🔼 Show scroll-up arrow only near bottom
+    if (scrollUpIndicator) {
+      if (scrollTop + windowHeight >= fullHeight - 50) {
+        scrollUpIndicator.style.opacity = 1;
+        scrollUpIndicator.style.pointerEvents = "auto";
+      } else {
+        scrollUpIndicator.style.opacity = 0;
+        scrollUpIndicator.style.pointerEvents = "none";
+      }
     }
+  });
+});
 
-    .image-section {
-      height: 100vh; /* Full screen */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const heroTitle = document.getElementById("hero-title");
 
-    /* Optional: smooth transition between images */
-    .image-section::after {
-      content: '';
-      display: block;
-      height: 5px;
-      background: transparent;
-    }
+  heroTitle.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+});
 
-    .image-section video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-  </style>
+
+
+
+</script>
 </head>
+
+
 <body>
 
-  <div class="image-section" style="background-image: url('images/overlpping photo scans_01.jpg');"></div>
+
+
+  <div id="hero-title" class="hero-title" style="cursor: pointer;">
+    Algún Día Cruzaré el Océano
+  </div>
+
+  <div id="top-controls">
+    <div id="language-toggle">
+      <button data-lang="en" class="lang-btn top-button active">English</button>
+      <button data-lang="es" class="lang-btn top-button">Español</button>
+    </div>
+    <button id="audio-toggle" class="top-button"></button>
+  </div>
+
+  <div id="scroll-down-indicator">
+    <span class="arrow">↓</span>
+    <span class="arrow">↓</span>
+    <span class="arrow">↓</span>
+  </div>
+
+  <div class="scrolling-text lang lang-es" style="top: 10vh;">Me he mudado más de diez veces en diez años.</div>
+  <div class="scrolling-text lang lang-es" style="top: 20vh;">Confundo las casas viejas.</div>
+  <div class="scrolling-text lang lang-es" style="top: 30vh;">Dibujo el plano de mi memoria.</div>
+  <div class="scrolling-text lang lang-es" style="top: 40vh;">Nos sentamos en el agua de la playa.</div>
+  <div class="scrolling-text lang lang-es" style="top: 50vh;">Llevamos las sillas al mar.</div>
+  <div class="scrolling-text lang lang-es" style="top: 128vh;">Vivimos ahora.</div>
+  <div class="scrolling-text lang lang-es" style="top: 148vh;">La maletera del carro era la mesa.</div>
+  <div class="scrolling-text lang lang-es" style="top: 158vh;">Mi casa de infancia,</div>
+  <div class="scrolling-text lang lang-es" style="top: 168vh;">una desconocida.</div>
+  <div class="scrolling-text lang lang-es" style="top: 315vh;">Una casa sin miembros.</div>
+  <div class="scrolling-text lang lang-es" style="top: 375vh;">La impermanencia nos ayuda a reinventarnos.</div>
+  <div class="scrolling-text lang lang-es" style="top: 410vh;">El vaso con el que tomaba agua</div>
+  <div class="scrolling-text lang lang-es" style="top: 420vh;">todas las mañanas.</div>
+  <div class="scrolling-text lang lang-es" style="top: 430vh;">La memoria muta.</div>
+  <div class="scrolling-text lang lang-es" style="top: 605vh;">Honro la luz y la oscuridad.</div>
+  <div class="scrolling-text lang lang-es" style="top: 615vh;">Ese calor humano.</div>
+  <div class="scrolling-text lang lang-es" style="top: 670vh;">El jardín de la casa de mi abuela.</div>
+  <div class="scrolling-text lang lang-es" style="top: 680vh;">El sol ardía por la ventana.</div>
+  <div class="scrolling-text lang lang-es" style="top: 690vh;">El país de la felicidad.</div>
+  <div class="scrolling-text lang lang-es" style="top: 680vh;">El sol ardía por la ventana.</div>
+  <div class="scrolling-text lang lang-es" style="top: 810vh;">Celebramos un año más.</div>
+  <div class="scrolling-text lang lang-es" style="top: 820vh;">Todo se confunde entre sí.</div>
+  <div class="scrolling-text lang lang-es" style="top: 858vh;">Miro a la cámara, ¿a quién miraba?</div>
+  <div class="scrolling-text lang lang-es" style="top: 870vh;">Estudio las fotos.</div>
+  <div class="scrolling-text lang lang-es" style="top: 879vh;">Busco respuestas.</div>
+  <div class="scrolling-text lang lang-es" style="top: 889vh;">¿Lo que viví fue real?</div>
+  <div class="scrolling-text lang lang-es" style="top: 970vh;">¿Dónde estoy?</div>
+  <div class="scrolling-text lang lang-es" style="top: 980vh;">Me pierdo en las imágenes.</div>
+  <div class="scrolling-text lang lang-es" style="top: 990vh;">Las burbujas de la bañera.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1039vh;">Las bromelias en las ventanas,</div>
+  <div class="scrolling-text lang lang-es" style="top: 1045vh;">la casa de los morrocoyes.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1083vh;">Las tablas para atrapar olas.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1089vh;">El barco de juguete de mi hermano.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1215vh;">Ninguna casa se mantiene intacta.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1223vh;">Busco honrar el cambio.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1310vh;">El camino que viene.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1320vh;">No hay ningún problema en el mundo.</div>
+  <div class="scrolling-text lang lang-es" style="top: 1330vh;">Todo es perfecto.</div>
+
+     <div class="scrolling-columns-static" style="top: 1572vh;">
+      <div class="column-left lang lang-es">
+        <em>Algún Día Cruzaré el Océano</em> <br>Tras una década viviendo en el extranjero y tres años después del fallecimiento de mi madre, el hogar de mi infancia nunca volverá a ser el mismo. Pero ningún hogar permanece inalterado. Me siento atraída por las fotos familiares impresas: fragmentos tangibles del pasado. Al reinterpretar digitalmente estas imágenes, busco descubrir nuevos significados en el archivo visual de mi familia.
+        Este viaje comenzó con una simple pregunta: ¿Algún día cruzaré el mar? El mar representa la distancia entre continentes y un espacio de aceptación, cambio y duelo por lo que una vez fue.
+      </div>
+    
+      <div class="column-right lang lang-es">
+        © 2025 Andrea Mato  <br>
+    Compuesto en IBM Plex Sans  <br>
+Diseño, fotografía, código y texto por la autora.
+      </div>
+
+  </div>
+
+  <div class="scrolling-text lang lang-en" style="top: 10vh;">I’ve moved more than ten times in ten years.</div>
+<div class="scrolling-text lang lang-en" style="top: 20vh;">Old houses blur together.</div>
+<div class="scrolling-text lang lang-en" style="top: 30vh;">I draw the map of my memory.</div>
+<div class="scrolling-text lang lang-en" style="top: 40vh;">We sat in the beach water.</div>
+<div class="scrolling-text lang lang-en" style="top: 50vh;">We carried the chairs into the sea.</div>
+<div class="scrolling-text lang lang-en" style="top: 128vh;">We live now.</div>
+<div class="scrolling-text lang lang-en" style="top: 148vh;">The trunk of the car was our table.</div>
+<div class="scrolling-text lang lang-en" style="top: 158vh;">My childhood home,</div>
+<div class="scrolling-text lang lang-en" style="top: 168vh;">a stranger.</div>
+<div class="scrolling-text lang lang-en" style="top: 315vh;">A house without its people.</div>
+<div class="scrolling-text lang lang-en" style="top: 375vh;">Impermanence helps us reinvent ourselves.</div>
+<div class="scrolling-text lang lang-en" style="top: 410vh;">The glass I used to drink from</div>
+<div class="scrolling-text lang lang-en" style="top: 420vh;">every morning.</div>
+<div class="scrolling-text lang lang-en" style="top: 430vh;">Memory mutates.</div>
+<div class="scrolling-text lang lang-en" style="top: 605vh;">I honor the light and the darkness.</div>
+<div class="scrolling-text lang lang-en" style="top: 615vh;">That human warmth.</div>
+<div class="scrolling-text lang lang-en" style="top: 670vh;">The garden at my grandmother’s house.</div>
+<div class="scrolling-text lang lang-en" style="top: 680vh;">The sun burned through the window.</div>
+<div class="scrolling-text lang lang-en" style="top: 690vh;">The country of happiness.</div>
+<div class="scrolling-text lang lang-en" style="top: 680vh;">The sun burned through the window.</div>
+<div class="scrolling-text lang lang-en" style="top: 810vh;">We celebrated another year.</div>
+<div class="scrolling-text lang lang-en" style="top: 820vh;">Everything starts to blur together.</div>
+<div class="scrolling-text lang lang-en" style="top: 858vh;">I look at the camera—who was I looking at?</div>
+<div class="scrolling-text lang lang-en" style="top: 870vh;">I study the photographs.</div>
+<div class="scrolling-text lang lang-en" style="top: 879vh;">I search for answers.</div>
+<div class="scrolling-text lang lang-en" style="top: 889vh;">Was what I lived real?</div>
+<div class="scrolling-text lang lang-en" style="top: 970vh;">Where am I?</div>
+<div class="scrolling-text lang lang-en" style="top: 980vh;">I get lost in the images.</div>
+<div class="scrolling-text lang lang-en" style="top: 990vh;">The bubbles in the bathtub.</div>
+<div class="scrolling-text lang lang-en" style="top: 1039vh;">The bromeliads in the window,</div>
+<div class="scrolling-text lang lang-en" style="top: 1045vh;">the tortoise house.</div>
+<div class="scrolling-text lang lang-en" style="top: 1083vh;">The boards we used to ride the waves.</div>
+<div class="scrolling-text lang lang-en" style="top: 1089vh;">My brother’s toy boat.</div>
+<div class="scrolling-text lang lang-en" style="top: 1215vh;">No house stays intact.</div>
+<div class="scrolling-text lang lang-en" style="top: 1223vh;">I try to honor the change.</div>
+<div class="scrolling-text lang lang-en" style="top: 1310vh;">The road ahead.</div>
+<div class="scrolling-text lang lang-en" style="top: 1320vh;">There is no problem in the world.</div>
+<div class="scrolling-text lang lang-en" style="top: 1330vh;">Everything is perfect.</div>
+
+<div class="scrolling-columns-static" style="top: 1572vh;">
+  <div class="column-left lang lang-en">
+    <em>Someday I’ll Cross the Ocean</em><br>
+    After a decade of living abroad and three years since my mother passed, my childhood home will never be the same. But no home remains unchanged. I'm drawn to printed family photographs—tangible fragments of the past. By digitally reinterpreting these images, I seek new meaning in my family’s visual archive.  
+    This journey began with a simple question: Someday will I cross the sea? The sea, both literal and metaphorical, represents the distance between continents and an interior space—one of acceptance, change, and mourning what once was.
+  </div>
+
+  <div class="column-right lang lang-en">
+    © 2025 Andrea Mato<br>
+    Typeset in IBM Plex Sans<br>
+    Design, photography, code, and writing by the author.
+  </div>
+</div>
+
+
+
+
+  <audio id="ambient-audio" loop preload="auto">
+    <source src="audio/audio1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="image-section" style="background-image: url('images/overlpping photo scans_01.jpg');">
+  </div>
   <div class="image-section" style="background-image: url('images/overlpping photo scans_02.jpg');"></div>
   <div class="image-section">
     <video autoplay muted loop playsinline>
@@ -62,7 +357,7 @@
     </video>
   </div>
   <div class="image-section" style="background-image: url('images/overlpping photo scans_05.jpg');"></div>
-  <div class="image-section" style="background-image: url('images/experimentations_05.jpg');"></div>
+  <div class="image-section" style="background-image: url('images/experimentations_03.jpg');"></div>
   <div class="image-section" style="background-image: url('images/overlpping photo scans_06.jpg');"></div>
   <div class="image-section">
     <video autoplay muted loop playsinline>
@@ -70,7 +365,6 @@
     </video>
   </div>
   <div class="image-section" style="background-image: url('images/overlpping photo scans_07.jpg');"></div>
-  <div class="image-section" style="background-image: url('images/experimentations_02.jpg');"></div>
   <div class="image-section" style="background-image: url('images/overlpping photo scans_08.jpg');"></div>
   <div class="image-section">
     <video autoplay muted loop playsinline>
@@ -78,7 +372,13 @@
     </video>
   </div>
   <div class="image-section" style="background-image: url('images/overlpping photo scans_09.jpg');"></div>
-  <div class="image-section" style="background-image: url('images/experimentations_03.jpg');"></div>
+
+    <div id="scroll-up-indicator">
+      <span class="arrow">↑</span>
+      <span class="arrow">↑</span>
+      <span class="arrow">↑</span>
+    </div>
+
 
 </body>
 </html>
