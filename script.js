@@ -124,12 +124,19 @@ window.addEventListener("scroll", () => {
   
     // ✍️ STACK LINES ON SCROLL
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      // Sort the entries by DOM position
+      const sortedEntries = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => {
+          return [...scrollingTexts].indexOf(a.target) - [...scrollingTexts].indexOf(b.target);
+        });
+    
+      sortedEntries.forEach(entry => {
         const el = entry.target;
         const langMatch = el.classList.contains(`lang-${currentLanguage}`);
         const text = el.textContent.trim();
-  
-        if (entry.isIntersecting && langMatch && !stackedLines.has(text)) {
+    
+        if (langMatch && !stackedLines.has(text)) {
           const clone = document.createElement("div");
           clone.className = `stacked-line lang lang-${currentLanguage}`;
           clone.textContent = text;
@@ -139,6 +146,7 @@ window.addEventListener("scroll", () => {
         }
       });
     }, { threshold: 0.8 });
+    
   
     scrollingTexts.forEach(el => {
       observer.observe(el);

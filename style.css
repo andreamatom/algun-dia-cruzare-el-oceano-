@@ -281,85 +281,121 @@
     opacity: 1;
   }
   
-  
+  /* Shared heights for both languages */
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(1),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(1) { top: 100vh; }
 
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(1) { top: 100vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(2) { top: 200vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(3) { top: 300vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(4) { top: 400vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(5) { top: 500vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(6) { top: 600vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(7) { top: 148vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(8) { top: 158vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(9) { top: 168vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(10) { top: 315vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(11) { top: 375vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(12) { top: 410vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(13) { top: 420vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(14) { top: 430vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(15) { top: 605vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(16) { top: 615vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(17) { top: 670vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(18) { top: 680vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(19) { top: 690vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(20) { top: 680vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(21) { top: 810vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(22) { top: 820vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(23) { top: 858vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(24) { top: 870vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(25) { top: 879vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(26) { top: 889vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(27) { top: 970vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(28) { top: 980vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(29) { top: 990vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(30) { top: 1039vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(31) { top: 1045vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(32) { top: 1083vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(33) { top: 1089vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(34) { top: 1215vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(35) { top: 1223vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(36) { top: 1310vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(37) { top: 1320vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(38) { top: 1330vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(39) { top: 10vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(40) { top: 20vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(41) { top: 30vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(42) { top: 40vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(43) { top: 50vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(44) { top: 128vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(45) { top: 148vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(46) { top: 158vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(47) { top: 168vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(48) { top: 315vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(49) { top: 375vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(50) { top: 410vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(51) { top: 420vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(52) { top: 430vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(53) { top: 605vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(54) { top: 615vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(55) { top: 670vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(56) { top: 680vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(57) { top: 690vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(58) { top: 680vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(59) { top: 810vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(60) { top: 820vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(61) { top: 858vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(62) { top: 870vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(63) { top: 879vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(64) { top: 889vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(65) { top: 970vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(66) { top: 980vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(67) { top: 990vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(68) { top: 1039vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(69) { top: 1045vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(70) { top: 1083vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(71) { top: 1089vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(72) { top: 1215vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(73) { top: 1223vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(74) { top: 1310vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(75) { top: 1320vh; }
-  #scrolling-text-wrapper:not(.stacked) .scrolling-text:nth-child(76) { top: 1330vh; }
-  
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(2),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(2) { top: 200vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(3),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(3) { top: 300vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(4),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(4) { top: 400vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(5),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(5) { top: 500vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(6),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(6) { top: 600vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(7),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(7) { top: 148vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(8),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(8) { top: 158vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(9),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(9) { top: 168vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(10),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(10) { top: 315vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(11),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(11) { top: 375vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(12),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(12) { top: 410vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(13),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(13) { top: 420vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(14),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(14) { top: 430vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(15),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(15) { top: 605vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(16),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(16) { top: 615vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(17),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(17) { top: 670vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(18),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(18) { top: 680vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(19),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(19) { top: 690vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(20),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(20) { top: 680vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(21),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(21) { top: 810vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(22),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(22) { top: 820vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(23),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(23) { top: 858vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(24),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(24) { top: 870vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(25),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(25) { top: 879vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(26),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(26) { top: 889vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(27),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(27) { top: 970vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(28),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(28) { top: 980vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(29),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(29) { top: 990vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(30),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(30) { top: 1039vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(31),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(31) { top: 1045vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(32),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(32) { top: 1083vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(33),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(33) { top: 1089vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(34),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(34) { top: 1215vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(35),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(35) { top: 1223vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(36),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(36) { top: 1310vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(37),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(37) { top: 1320vh; }
+
+.scrolling-text-wrapper.lang-es:not(.stacked) .scrolling-text:nth-child(38),
+.scrolling-text-wrapper.lang-en:not(.stacked) .scrolling-text:nth-child(38) { top: 1330vh; }
+
 
   #collected-text {
     opacity: 0;
